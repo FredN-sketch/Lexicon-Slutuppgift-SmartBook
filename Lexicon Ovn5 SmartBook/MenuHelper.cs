@@ -31,6 +31,15 @@
                     LibraryApp.ListAllBooks();
                     MenuHelper.PressAnyKey();
                     return true;
+                case "4":
+                    return true;
+                case "5":
+                    return true;
+                case "6":
+                    //   LibraryApp.ExportLibraryToJson();
+                    LibraryApp.ImportLibraryFromJson();
+                    return true;
+
                 default:
                     return false;
             }
