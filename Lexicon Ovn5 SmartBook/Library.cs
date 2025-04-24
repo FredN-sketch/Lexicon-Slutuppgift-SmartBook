@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lexicon_Slutuppgift_SmartBook
 {
-    class Library
+    public class Library
     {
-        public List<Book> books;
+        private List<Book> books;
         public Library()
         {
             books = new List<Book>();
@@ -16,6 +16,11 @@ namespace Lexicon_Slutuppgift_SmartBook
         internal void AddBook(Book book)
         {
             books.Add(book);
+        }
+        internal void RemoveBook(Book book) { }
+        internal IEnumerable<Book> GetBooks()
+        {
+            return books.ToArray();
         }
     }
 }

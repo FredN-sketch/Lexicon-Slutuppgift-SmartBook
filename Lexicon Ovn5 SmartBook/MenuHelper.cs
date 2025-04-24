@@ -18,6 +18,23 @@
             Console.WriteLine("Skriv in siffran till vänster om ett menyval för att köra resp funktion");
             Console.Write(Environment.NewLine);
         }
+        public static bool MainMenu()
+        {
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    return true;
+                case "2":
+                    return true;
+                case "3": 
+                    LibraryApp.ListAllBooks();
+                    MenuHelper.PressAnyKey();
+                    return true;
+                default:
+                    return false;
+            }
+        }
 
         public static void PressAnyKey()
         {
