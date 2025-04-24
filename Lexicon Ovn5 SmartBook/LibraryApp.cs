@@ -44,6 +44,8 @@ namespace Lexicon_Ovn5_SmartBook
         internal static void ExportLibraryToJson()
         {
             File.WriteAllText(@"C:\Tmp\library.json", JsonSerializer.Serialize(library.GetBooks()));
+            Console.WriteLine("Exporten är klar");
+            MenuHelper.PressAnyKey();
         }
         internal static void ImportLibraryFromJson()
         {
@@ -58,6 +60,29 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine("Importen är klar");
             MenuHelper.PressAnyKey();
             
+        }
+
+        internal static void JsonMenu()
+        {
+            Console.WriteLine("Spara och läsa in biblioteket från fil");
+            Console.WriteLine("======================================");
+            Console.WriteLine("1. Spara biblioteket till fil (exportera)");
+            Console.WriteLine("2. Läs in biblioteket från fil (importera)");
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    ExportLibraryToJson();                     
+                    break;
+                case "2":
+                    ImportLibraryFromJson();
+                    break;
+                default:
+                    Console.WriteLine("Ogiltigt val");
+                    Console.ReadLine();
+                    break;
+
+            }                   
         }
     }
 }

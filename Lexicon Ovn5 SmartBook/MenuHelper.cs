@@ -29,15 +29,14 @@
                     return true;
                 case "3": 
                     LibraryApp.ListAllBooks();
-                    MenuHelper.PressAnyKey();
+                    PressAnyKey();
                     return true;
                 case "4":
                     return true;
                 case "5":
                     return true;
                 case "6":
-                    //   LibraryApp.ExportLibraryToJson();
-                    LibraryApp.ImportLibraryFromJson();
+                    LibraryApp.JsonMenu();                   
                     return true;
 
                 default:
