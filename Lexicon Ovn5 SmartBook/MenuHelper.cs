@@ -1,4 +1,6 @@
-﻿namespace Lexicon_Ovn5_SmartBook
+﻿using Lexicon_Slutuppgift_SmartBook;
+
+namespace Lexicon_Ovn5_SmartBook
 {
     public static class MenuHelper
     {
@@ -13,6 +15,7 @@
             Console.WriteLine("4. Sök efter bok (titel eller författare)");
             Console.WriteLine("5. Markera bok som \"utlånad\" eller \"tillgänglig\"");
             Console.WriteLine("6. Spara och läsa in biblioteket från fil (JSON)");
+            Console.WriteLine("7. SeedData");
             Console.WriteLine("0. Avsluta");
             Console.Write(Environment.NewLine);
             Console.WriteLine("Skriv in siffran till vänster om ett menyval för att köra resp funktion");
@@ -24,6 +27,7 @@
             switch (userInput)
             {
                 case "1":
+                    LibraryApp.AddBookWithPrompt();
                     return true;
                 case "2":
                     return true;
@@ -38,9 +42,15 @@
                 case "6":
                     LibraryApp.JsonMenu();                   
                     return true;
-
-                default:
+                case "7":
+                    LibraryApp.SeedData();
+                    return true;
+                case "0":
                     return false;
+                default:
+                    Console.WriteLine("Ogiltigt val.");
+                    PressAnyKey();
+                    return true;
             }
         }
 

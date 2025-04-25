@@ -13,7 +13,7 @@ namespace Lexicon_Ovn5_SmartBook
         private static Library library = new Library();
         public static void Start()
         {
-         //   SeedData();
+            //SeedData();
             bool showMenu = true;
             while (showMenu)
             {
@@ -21,12 +21,61 @@ namespace Lexicon_Ovn5_SmartBook
                 showMenu = MenuHelper.MainMenu();
             }
         }
-        private static void SeedData()
+        public static void AddBookWithPrompt()
+        {            
+            Console.Write("Titel: ");
+            string title = Console.ReadLine();
+            Console.Write("Författare: ");
+            string author = Console.ReadLine();            
+            
+            string isbn = ValidateIsbn("ISBN");     
+
+            Console.Write("Kategori: ");
+            string category = Console.ReadLine();
+
+            library.AddBook(new Book(title, author, isbn, category));
+        }
+
+        public static string ValidateIsbn(string prompt)
         {
-            library.AddBook(new Book("Bilbo", "Tolkien, J.R.R.", "ISBN 91 29 53633 2", "Fantasy"));
-            library.AddBook(new Book("Varulvens år", "King, Stephen", "ISBN 91-32-31333-0", "Skräck"));
-            library.AddBook(new Book("Fågeln som vrider upp världen", "Murakami, Haruki", "ISBN 978-91-1-301940-6", "Roman"));
-            library.AddBook(new Book("Staden som försvann", "King, Stephen", "ISBN 91-582-1002-4", "Skräck"));            
+            bool success = false;
+            string answer;
+
+            do
+            {
+                Console.Write($"{prompt}: ");
+                answer = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(answer))
+                {
+                    Console.WriteLine($"Ange ett giltigt {prompt}");
+                }
+               
+                else if (library.GetBooks().Any(b => b.Isbn == answer))
+                {
+                    Console.WriteLine("Det ISBN-numret används redan");
+                }
+                    
+                else
+                {
+                    success = true;
+                }
+
+            } while (!success);
+
+            return answer;
+        }
+
+        public static void SeedData()
+        {
+            library.AddBook(new Book("Bilbo", "Tolkien, JRR", "91 29 53633 2", "Fantasy"));
+            library.AddBook(new Book("Varulvens år", "King, Stephen", "91-32-31333-0", "Skräck"));
+            library.AddBook(new Book("Fågeln som vrider upp världen", "Murakami, H", "978-91-1-301940-6", "Roman"));
+            library.AddBook(new Book("Staden som försvann", "King, Stephen", "91-582-1002-4", "Skräck"));
+            library.AddBook(new Book("Shogun", "Clavell, James", "91-582-1002-5", "Roman"));
+            library.AddBook(new Book("Moment 22", "Heller, Joseph", "91-582-1002-6", "Roman"));
+            library.AddBook(new Book("Den illustrerade mannen", "Bradbury, Ray", "91-582-1002-8", "Science Fiction"));
+            library.AddBook(new Book("Jag, robot", "Asimov, Isaac", "91-582-1002-9", "Science Fiction"));
         }
        public static void ListAllBooks()
         {
@@ -34,11 +83,11 @@ namespace Lexicon_Ovn5_SmartBook
           //  var booklist = books
                 .OrderBy(x => x.Author)
                 .ThenBy(x => x.Title);
-            Console.WriteLine($"Författare \tTitel \tISBN \tKategori");
+            Console.WriteLine($"Författare \tTitel \t\t\tISBN \tKategori \tStatus");
             foreach (Book book in books)
             {
                 //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
-                Console.WriteLine($"{book.Author} \t\t{book.Title} \t{book.Isbn} \t{book.Category}");
+                Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
             }
         }
         internal static void ExportLibraryToJson()

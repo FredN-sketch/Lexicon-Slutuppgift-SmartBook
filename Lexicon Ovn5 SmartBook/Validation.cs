@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lexicon_Ovn5_SmartBook;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Lexicon_Slutuppgift_SmartBook
 {
-    public static class Util
+    public static class Validation
     {
+        
         public static string AskForString(string prompt)
         {
             bool success = false;
@@ -31,6 +33,7 @@ namespace Lexicon_Slutuppgift_SmartBook
 
             return answer;
         }
+
 
         public static uint AskForUInt(string prompt)
         {
