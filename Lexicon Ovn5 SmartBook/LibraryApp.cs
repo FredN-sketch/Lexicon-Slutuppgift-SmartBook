@@ -28,6 +28,7 @@ namespace Lexicon_Ovn5_SmartBook
             Console.Write("Författare: ");
             string author = Console.ReadLine();            
             
+
             string isbn = ValidateIsbn("ISBN");     
 
             Console.Write("Kategori: ");
@@ -38,12 +39,14 @@ namespace Lexicon_Ovn5_SmartBook
 
         public static string ValidateIsbn(string prompt)
         {
+            //ska nog ändra så att jag kollar IsNullOrWhiteSpace i en egen funktion som jag anropar från
+            //denna för att uppnå bättre DRY
             bool success = false;
             string answer;
 
             do
             {
-                Console.Write($"{prompt}: ");
+                Console.Write($"{prompt}: "); 
                 answer = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(answer))
@@ -77,7 +80,7 @@ namespace Lexicon_Ovn5_SmartBook
             library.AddBook(new Book("Den illustrerade mannen", "Bradbury, Ray", "91-582-1002-8", "Science Fiction"));
             library.AddBook(new Book("Jag, robot", "Asimov, Isaac", "91-582-1002-9", "Science Fiction"));
         }
-       public static void ListAllBooks()
+        public static void ListAllBooks()
         {
             var books = library.GetBooks()
           //  var booklist = books
@@ -87,7 +90,8 @@ namespace Lexicon_Ovn5_SmartBook
             foreach (Book book in books)
             {
                 //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
-                Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+                //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+                Console.WriteLine(book);
             }
         }
         internal static void ExportLibraryToJson()
@@ -130,8 +134,29 @@ namespace Lexicon_Ovn5_SmartBook
                     Console.WriteLine("Ogiltigt val");
                     Console.ReadLine();
                     break;
-
             }                   
+        }
+        internal static void SearchMenu()
+        {
+            Console.WriteLine("Sök bok");
+            Console.WriteLine("======================================");
+            Console.WriteLine("1. Efter författare");
+            Console.WriteLine("2. Efter titel");
+            Console.WriteLine("3. ISBN");
+            string userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    ExportLibraryToJson();
+                    break;
+                case "2":
+                    ImportLibraryFromJson();
+                    break;
+                default:
+                    Console.WriteLine("Ogiltigt val");
+                    Console.ReadLine();
+                    break;
+            }
         }
     }
 }

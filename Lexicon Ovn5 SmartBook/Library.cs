@@ -14,25 +14,25 @@ namespace Lexicon_Slutuppgift_SmartBook
         {
             books = new List<Book>();
         }
-        public void AddBookWithPrompt()
-        {
-            Console.WriteLine("Författare: ");
-            string author = Console.ReadLine(); // The exclamation mark is the null-forgiving operator and just tells the
-                                                // compiler to supress the nullable warnings. See: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-forgiving
+        //public void AddBookWithPrompt()
+        //{
+        //    Console.WriteLine("Författare: ");
+        //    string author = Console.ReadLine(); // The exclamation mark is the null-forgiving operator and just tells the
+        //                                        // compiler to supress the nullable warnings. See: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-forgiving
 
-            Console.WriteLine("Titel: ");
-            string title = Console.ReadLine();
+        //    Console.WriteLine("Titel: ");
+        //    string title = Console.ReadLine();
 
-            Console.WriteLine("ISBN: ");
-            string isbn = Console.ReadLine();
-            // check for duplicate ISBN here
+        //    Console.WriteLine("ISBN: ");
+        //    string isbn = Console.ReadLine();
+        //    // check for duplicate ISBN here
 
-            Console.WriteLine("Kategori: ");
-            string category = Console.ReadLine();
+        //    Console.WriteLine("Kategori: ");
+        //    string category = Console.ReadLine();
 
-            AddBook(new Book(author, title, isbn, category));
+        //    AddBook(new Book(author, title, isbn, category));
            
-        }
+        //}
         internal void AddBook(Book book)
         {
             books.Add(book);
@@ -47,6 +47,18 @@ namespace Lexicon_Slutuppgift_SmartBook
         {
             return books.ToArray();
         }
-        
+        internal Book QueryIsbn(string isbn)
+        {
+            Book book = books.FirstOrDefault(b => b.Isbn == isbn);
+            return book;
+        }
+        internal Book QueryTitle(string title)
+        {
+            Book book = books.FirstOrDefault(b => b.Title.Equals(title));
+
+            return book;
+        }
+
+
     }
 }

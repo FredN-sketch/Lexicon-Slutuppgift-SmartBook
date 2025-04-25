@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Lexicon_Slutuppgift_SmartBook
 {
@@ -19,6 +20,7 @@ namespace Lexicon_Slutuppgift_SmartBook
         public string Isbn { get; set; }
         public string Category { get; set; }
         public BookStatus Status { get; set; }
+       
         public Book(string title, string author, string isbn, string category, BookStatus status=BookStatus.Tillgänglig)
         {
             Title = title;
@@ -27,6 +29,10 @@ namespace Lexicon_Slutuppgift_SmartBook
             Category = category;
             Status = status;
         }
-
+        public override string ToString()
+        {
+            return $"{Author} \t{Title} \t{Isbn} \t{Category} {Status}";
+        }
+        
     }
 }
