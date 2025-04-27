@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Lexicon_Ovn5_SmartBook
 {
@@ -139,24 +140,40 @@ namespace Lexicon_Ovn5_SmartBook
         internal static void SearchMenu()
         {
             Console.WriteLine("Sök bok");
-            Console.WriteLine("======================================");
-            Console.WriteLine("1. Efter författare");
-            Console.WriteLine("2. Efter titel");
+            Console.WriteLine("===============");
+            Console.WriteLine("1. Författare");
+            Console.WriteLine("2. Titel");
             Console.WriteLine("3. ISBN");
             string userInput = Console.ReadLine();
             switch (userInput)
             {
                 case "1":
-                    ExportLibraryToJson();
+                    string author = Validation.AskForString("Författare");
+                    var list = library.QueryAuthor(author);
+                    foreach (Book b in list)
+                    {
+                        //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
+                        //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+                        Console.WriteLine(b);
+                    }
                     break;
                 case "2":
-                    ImportLibraryFromJson();
+                    string title = Validation.AskForString("Titel");
+                    Book book = library.QueryTitle(title);
+                    Console.WriteLine(book);
+                 //   MenuHelper.PressAnyKey();
+                    break;
+                case "3":
+                    string isbn = Validation.AskForString("isbn");
+                    book = library.QueryIsbn(isbn);
+                    Console.WriteLine(book);
                     break;
                 default:
                     Console.WriteLine("Ogiltigt val");
-                    Console.ReadLine();
+              //      Console.ReadLine();
                     break;
             }
+            MenuHelper.PressAnyKey();
         }
     }
 }

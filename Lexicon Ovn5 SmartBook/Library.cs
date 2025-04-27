@@ -58,6 +58,13 @@ namespace Lexicon_Slutuppgift_SmartBook
 
             return book;
         }
+        internal List<Book> QueryAuthor(string author)
+        {
+            List<Book> list = books.Where(b => b.Author.Contains(author)).ToList();
+
+
+            return list;
+        }
 
 
     }

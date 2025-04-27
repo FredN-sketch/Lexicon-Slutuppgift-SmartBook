@@ -36,6 +36,7 @@ namespace Lexicon_Ovn5_SmartBook
                     PressAnyKey();
                     return true;
                 case "4":
+                    LibraryApp.SearchMenu();
                     return true;
                 case "5":
                     return true;
