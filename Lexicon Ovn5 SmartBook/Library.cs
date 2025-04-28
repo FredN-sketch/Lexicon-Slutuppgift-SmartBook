@@ -36,6 +36,7 @@ namespace Lexicon_Slutuppgift_SmartBook
         internal void AddBook(Book book)
         {
             books.Add(book);
+           
         }
         internal void RemoveBook(Book book) 
         {

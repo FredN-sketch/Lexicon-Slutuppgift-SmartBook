@@ -38,6 +38,8 @@ namespace Lexicon_Ovn5_SmartBook
             string category = Validation.AskForString("Kategori");
 
             library.AddBook(new Book(title, author, isbn, category));
+            Console.WriteLine("Boken är tillagd");
+            MenuHelper.PressAnyKey();
         }
 
         public static string ValidateIsbn(string prompt)
@@ -144,7 +146,7 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine("======================================");
             Console.WriteLine("1. Spara biblioteket till fil (exportera)");
             Console.WriteLine("2. Läs in biblioteket från fil (importera)");
-            string userInput = Console.ReadLine();
+            string userInput = Validation.AskForString("", ["1","2"]);
             switch (userInput)
             {
                 case "1":
@@ -154,8 +156,8 @@ namespace Lexicon_Ovn5_SmartBook
                     ImportLibraryFromJson();
                     break;
                 default:
-                    Console.WriteLine("Ogiltigt val");
-                    Console.ReadLine();
+                    //Console.WriteLine("Ogiltigt val");
+                    //Console.ReadLine();
                     break;
             }                   
         }
@@ -166,7 +168,7 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine("1. Författare");
             Console.WriteLine("2. Titel");
             Console.WriteLine("3. ISBN");
-            string userInput = Console.ReadLine();
+            string userInput = Validation.AskForString("", ["1", "2", "3"]);
             switch (userInput)
             {
                 case "1":
@@ -200,7 +202,7 @@ namespace Lexicon_Ovn5_SmartBook
                         BookListMenu(list);                    
                     break;
                 case "3":
-                    string isbn = Validation.AskForString("isbn");
+                    string isbn = Validation.AskForString("ISBN");
                     Book book = library.QueryIsbn(isbn);
                     Console.WriteLine(book);
                     BookMethods(book);
@@ -234,19 +236,18 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine("1. Markera bok som utlånad eller tillgänglig");
             Console.WriteLine("2. Ta bort bok");
             Console.WriteLine("0. Avbryt");
-            uint input = Validation.AskForUInt("Åtgärd");
+            string input = Validation.AskForString("Åtgärd", ["1", "2", "0"]);
             switch (input)
             {
-                case 1:
+                case "1":
                     BookChangeBookStatus(book);                                   
                    break;
-                case 2:
-                    BookRemoveBook(book);
-                                       
+                case "2":
+                    BookRemoveBook(book);                                       
                     break;
-                case 0:
+                case "0":
                     break;
-                default: Console.WriteLine("Ogiltigt val");
+                default: //Console.WriteLine("Ogiltigt val");
                     break;
             }
 
@@ -256,7 +257,7 @@ namespace Lexicon_Ovn5_SmartBook
         private static void BookRemoveBook(Book book)
         {
             Console.WriteLine($"Du har angett att du vill ta bort boken \"{book.Title}\" av {book.Author}");
-            string input = Validation.AskForString("Är du säker? j/n");
+            string input = Validation.AskForString("Är du säker? j/n", ["j", "n"]);
             switch (input)
             {
                 case "j":
@@ -273,7 +274,7 @@ namespace Lexicon_Ovn5_SmartBook
         private static void BookChangeBookStatus(Book book)
         {
             Console.WriteLine($"Boken är markerad som {book.Status}");
-            string input = Validation.AskForString("Vill du ändra? j/n");
+            string input = Validation.AskForString("Vill du ändra? j/n", ["j", "n"]);
             switch (input) 
             {
                 case "j":
@@ -285,7 +286,7 @@ namespace Lexicon_Ovn5_SmartBook
                 case "n":
                     break;
                 default: 
-                    Console.WriteLine("Ogiltigt val!");
+                  //  Console.WriteLine("Ogiltigt val!");
                     break;
             }
             Console.WriteLine(book.Status);
