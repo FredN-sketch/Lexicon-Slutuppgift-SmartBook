@@ -83,9 +83,9 @@ namespace Lexicon_Ovn5_SmartBook
             library.AddBook(new Book("Boken som försvann", "Bertilsson Adam", "12312133", "Fiktion"));
             library.AddBook(new Book("Stora skräckboken", "King William", "12312134", "Skräck"));
             library.AddBook(new Book("The Fundamentals of Kyokushin Karate","Fitkin Brian","12346","Fack"));
-            library.AddBook(new Book("Momo", "Ende Michael", "12312135", "Fantasy"));
-            library.AddBook(new Book("Den oändliga historien", "Ende Michael", "12312136", "Fantasy"));
-            library.AddBook(new Book("Den oländiga historien", "Kvist Kalle", "12312137", "Roman"));
+            library.AddBook(new Book("Momo", "Ende Michael", "12345", "Fantasy"));
+            library.AddBook(new Book("Den oändliga historien", "Ende Michael", "12346", "Fantasy"));
+            library.AddBook(new Book("Den oländiga historien", "Kvist Kalle", "12347", "Roman"));
 
 
         }
@@ -113,13 +113,23 @@ namespace Lexicon_Ovn5_SmartBook
         {
             string fileName = @"C:\Tmp\library.json";
             //   var books = JsonSerializer.Deserialize<Object>(File.ReadAllText(@"C:\Tmp\library.json"));
-            string jsonString = File.ReadAllText(fileName);
-            var booklist = JsonSerializer.Deserialize<List<Book>>(jsonString);
-            foreach (Book book in booklist)
+            try
             {
-                library.AddBook(book);
+                string jsonString = File.ReadAllText(fileName);
+                var booklist = JsonSerializer.Deserialize<List<Book>>(jsonString);
+                foreach (Book book in booklist)
+                {
+                    library.AddBook(book);
+                }
+                Console.WriteLine("Importen är klar");
+
             }
-            Console.WriteLine("Importen är klar");
+            catch (Exception ex) 
+            {
+                Console.WriteLine("JSON-filen finns inte. Lägg in böcker manuellt eller använd SeedData, och exportera till JSON först.");
+                Console.WriteLine(ex.Message);
+            }
+           
             MenuHelper.PressAnyKey();
             
         }
@@ -162,8 +172,12 @@ namespace Lexicon_Ovn5_SmartBook
                     {
                         //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
                         //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
-                        Console.WriteLine(b);
+                        Console.WriteLine($"{list.IndexOf(b) + 1} {b}");
                     }
+                    if (list.Count == 1)
+                        BookMethods(list[0]);
+                    else
+                        BookListMenu(list);
                     break;
                 case "2":
                     string title = Validation.AskForString("Titel");
@@ -176,17 +190,19 @@ namespace Lexicon_Ovn5_SmartBook
                         //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
                         Console.WriteLine($"{list.IndexOf(b)+1} {b}");                       
                     }
-                    BookListMenu(list);
-                    //   MenuHelper.PressAnyKey();
+                    if (list.Count == 1)
+                        BookMethods(list[0]);
+                    else
+                        BookListMenu(list);                    
                     break;
                 case "3":
                     string isbn = Validation.AskForString("isbn");
                     Book book = library.QueryIsbn(isbn);
                     Console.WriteLine(book);
+                    BookMethods(book);
                     break;
                 default:
-                    Console.WriteLine("Ogiltigt val");
-              //      Console.ReadLine();
+                    Console.WriteLine("Ogiltigt val");              
                     break;
             }
             MenuHelper.PressAnyKey();
