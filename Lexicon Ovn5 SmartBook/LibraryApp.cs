@@ -86,8 +86,8 @@ namespace Lexicon_Ovn5_SmartBook
             library.AddBook(new Book("Momo", "Ende Michael", "12345", "Fantasy"));
             library.AddBook(new Book("Den oändliga historien", "Ende Michael", "12346", "Fantasy"));
             library.AddBook(new Book("Den oländiga historien", "Kvist Kalle", "12347", "Roman"));
-
-
+            Console.WriteLine("Data inläst.");
+            
         }
         public static void ListAllBooks()
         {
@@ -122,14 +122,16 @@ namespace Lexicon_Ovn5_SmartBook
                     library.AddBook(book);
                 }
                 Console.WriteLine("Importen är klar");
-
             }
-            catch (Exception ex) 
+            catch (IOException ex)
             {
-                Console.WriteLine("JSON-filen finns inte. Lägg in böcker manuellt eller använd SeedData, och exportera till JSON först.");
+                Console.WriteLine("Det finns ingen JSON-fil att läsa in biblioteket från.");
+                Console.WriteLine("Lägg in böcker manuellt eller använd SeedData, och exportera till JSON först.");
                 Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.GetType().ToString());
+                
             }
-           
+
             MenuHelper.PressAnyKey();
             
         }
@@ -234,8 +236,10 @@ namespace Lexicon_Ovn5_SmartBook
             switch (input)
             {
                 case 1:
-                    break;
+                    BookChangeBookStatus(book);                                   
+                   break;
                 case 2:
+                    library.RemoveBook(book);                    
                     break;
                 case 0:
                     break;
@@ -245,7 +249,27 @@ namespace Lexicon_Ovn5_SmartBook
 
 
         }
-           
-        
+
+        private static void BookChangeBookStatus(Book book)
+        {
+            Console.WriteLine($"Boken är markerad som {book.Status}");
+            string input = Validation.AskForString("Vill du ändra? j/n");
+            switch (input) 
+            {
+                case "j":
+                    if (book.Status == BookStatus.Utlånad)
+                        book.Status = BookStatus.Tillgänglig;
+                    else
+                        book.Status = BookStatus.Utlånad;
+                        break;
+                case "n":
+                    break;
+                default: 
+                    Console.WriteLine("Ogiltigt val!");
+                    break;
+            }
+            Console.WriteLine(book.Status);
+       //     MenuHelper.PressAnyKey();
+        }
     }
 }

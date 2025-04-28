@@ -38,10 +38,16 @@ namespace Lexicon_Slutuppgift_SmartBook
             books.Add(book);
         }
         internal void RemoveBook(Book book) 
-        { 
-            books.Remove(book);
-            Console.ReadLine();
-            AddBook(book);
+        {
+            if (books.Remove(book))
+            {
+                book = null;
+                Console.WriteLine("Boken är borttagen");
+            }
+
+                
+         //   Console.ReadLine();
+        //    AddBook(book);
         }
         internal IEnumerable<Book> GetBooks()
         {

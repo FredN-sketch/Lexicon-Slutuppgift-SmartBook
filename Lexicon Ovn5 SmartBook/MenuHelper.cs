@@ -45,6 +45,8 @@ namespace Lexicon_Ovn5_SmartBook
                     return true;
                 case "7":
                     LibraryApp.SeedData();
+                    PressAnyKey();
+
                     return true;
                 case "0":
                     return false;
@@ -53,6 +55,7 @@ namespace Lexicon_Ovn5_SmartBook
                     PressAnyKey();
                     return true;
             }
+            
         }
 
         public static void PressAnyKey()
