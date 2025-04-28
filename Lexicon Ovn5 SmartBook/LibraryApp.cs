@@ -72,14 +72,22 @@ namespace Lexicon_Ovn5_SmartBook
 
         public static void SeedData()
         {
-            library.AddBook(new Book("Bilbo", "Tolkien, JRR", "91 29 53633 2", "Fantasy"));
-            library.AddBook(new Book("Varulvens år", "King, Stephen", "91-32-31333-0", "Skräck"));
-            library.AddBook(new Book("Fågeln som vrider upp världen", "Murakami, H", "978-91-1-301940-6", "Roman"));
-            library.AddBook(new Book("Staden som försvann", "King, Stephen", "91-582-1002-4", "Skräck"));
-            library.AddBook(new Book("Shogun", "Clavell, James", "91-582-1002-5", "Roman"));
-            library.AddBook(new Book("Moment 22", "Heller, Joseph", "91-582-1002-6", "Roman"));
-            library.AddBook(new Book("Den illustrerade mannen", "Bradbury, Ray", "91-582-1002-8", "Science Fiction"));
-            library.AddBook(new Book("Jag, robot", "Asimov, Isaac", "91-582-1002-9", "Science Fiction"));
+            library.AddBook(new Book("Bilbo", "Tolkien JRR", "91 29 53633 2", "Fantasy"));
+            library.AddBook(new Book("Varulvens år", "King Stephen", "91-32-31333-0", "Skräck"));
+            library.AddBook(new Book("Fågeln som vrider upp världen", "Murakami Haruki", "978-91-1-301940-6", "Roman"));
+            library.AddBook(new Book("Staden som försvann", "King Stephen", "91-582-1002-4", "Skräck"));
+            library.AddBook(new Book("Shogun", "Clavell James", "91-582-1002-5", "Roman"));
+            library.AddBook(new Book("Moment 22", "Heller Joseph", "91-582-1002-6", "Roman"));
+            library.AddBook(new Book("Den illustrerade mannen", "Bradbury Ray", "91-582-1002-8", "Science Fiction"));
+            library.AddBook(new Book("Jag, robot", "Asimov Isaac", "91-582-1002-9", "Science Fiction"));
+            library.AddBook(new Book("Boken som försvann", "Bertilsson Adam", "12312133", "Fiktion"));
+            library.AddBook(new Book("Stora skräckboken", "King William", "12312134", "Skräck"));
+            library.AddBook(new Book("The Fundamentals of Kyokushin Karate","Fitkin Brian","12346","Fack"));
+            library.AddBook(new Book("Momo", "Ende Michael", "12312135", "Fantasy"));
+            library.AddBook(new Book("Den oändliga historien", "Ende Michael", "12312136", "Fantasy"));
+            library.AddBook(new Book("Den oländiga historien", "Kvist Kalle", "12312137", "Roman"));
+
+
         }
         public static void ListAllBooks()
         {
@@ -159,13 +167,20 @@ namespace Lexicon_Ovn5_SmartBook
                     break;
                 case "2":
                     string title = Validation.AskForString("Titel");
-                    Book book = library.QueryTitle(title);
-                    Console.WriteLine(book);
-                 //   MenuHelper.PressAnyKey();
+                  //  Book book = library.QueryTitle(title);
+                    list = library.QueryTitle(title);
+                  //  Console.WriteLine(book);
+                    foreach (Book b in list)
+                    {
+                        //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
+                        //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+                        Console.WriteLine(b);
+                    }
+                    //   MenuHelper.PressAnyKey();
                     break;
                 case "3":
                     string isbn = Validation.AskForString("isbn");
-                    book = library.QueryIsbn(isbn);
+                    Book book = library.QueryIsbn(isbn);
                     Console.WriteLine(book);
                     break;
                 default:

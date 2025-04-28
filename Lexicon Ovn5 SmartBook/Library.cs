@@ -52,15 +52,17 @@ namespace Lexicon_Slutuppgift_SmartBook
             Book book = books.FirstOrDefault(b => b.Isbn == isbn);
             return book;
         }
-        internal Book QueryTitle(string title)
+        internal List<Book> QueryTitle(string title)
         {
-            Book book = books.FirstOrDefault(b => b.Title.Equals(title));
+          //  Book book = books.FirstOrDefault(b => b.Title.Equals(title));
+            List<Book> list = books.Where(b => b.Title.ToString().ToLower().Contains(title.ToLower())).ToList();
 
-            return book;
+            return list;
         }
         internal List<Book> QueryAuthor(string author)
         {
-            List<Book> list = books.Where(b => b.Author.Contains(author)).ToList();
+            //List<Book> list = books.Where(b => b.Author.Contains(author)).ToList();
+            List<Book> list = books.Where(b => b.Author.ToString().ToLower().Contains(author.ToLower())).ToList();
 
 
             return list;
