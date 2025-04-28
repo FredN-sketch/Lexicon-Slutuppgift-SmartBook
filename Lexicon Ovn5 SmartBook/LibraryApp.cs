@@ -24,16 +24,18 @@ namespace Lexicon_Ovn5_SmartBook
         }
         public static void AddBookWithPrompt()
         {            
-            Console.Write("Titel: ");
-            string title = Console.ReadLine();
-            Console.Write("Författare: ");
-            string author = Console.ReadLine();            
-            
+           // Console.Write("Titel: ");
+            string title = Validation.AskForString("Titel");
+            // Console.Write("Författare: ");
+            // string author = Console.ReadLine();
+            string author = Validation.AskForString("Författare");
 
-            string isbn = ValidateIsbn("ISBN");     
 
-            Console.Write("Kategori: ");
-            string category = Console.ReadLine();
+            string isbn = ValidateIsbn("ISBN");
+
+            //Console.Write("Kategori: ");
+            //string category = Console.ReadLine();
+            string category = Validation.AskForString("Kategori");
 
             library.AddBook(new Book(title, author, isbn, category));
         }
@@ -239,7 +241,8 @@ namespace Lexicon_Ovn5_SmartBook
                     BookChangeBookStatus(book);                                   
                    break;
                 case 2:
-                    library.RemoveBook(book);                    
+                    BookRemoveBook(book);
+                                       
                     break;
                 case 0:
                     break;
@@ -248,6 +251,23 @@ namespace Lexicon_Ovn5_SmartBook
             }
 
 
+        }
+
+        private static void BookRemoveBook(Book book)
+        {
+            Console.WriteLine($"Du har angett att du vill ta bort boken \"{book.Title}\" av {book.Author}");
+            string input = Validation.AskForString("Är du säker? j/n");
+            switch (input)
+            {
+                case "j":
+                    library.RemoveBook(book);
+                    break;
+                case "n":
+                    break;
+                default:
+                    Console.WriteLine("Ogiltigt val!");
+                    break;
+            }                     
         }
 
         private static void BookChangeBookStatus(Book book)

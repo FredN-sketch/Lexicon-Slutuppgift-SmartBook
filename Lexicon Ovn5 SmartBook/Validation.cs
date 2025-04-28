@@ -22,7 +22,7 @@ namespace Lexicon_Slutuppgift_SmartBook
 
                 if (string.IsNullOrWhiteSpace(answer))
                 {
-                    Console.WriteLine($"You must enter a valid {prompt}");
+                    Console.WriteLine($"Du måste ange en giltig {prompt}");
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace Lexicon_Slutuppgift_SmartBook
                 }
                 else
                 {
-                    Console.WriteLine($"Please enter a valid {prompt}");
+                    Console.WriteLine($"Ange en giltig {prompt}");
                 }
 
             } while (true);
