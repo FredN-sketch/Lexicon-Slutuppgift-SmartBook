@@ -17,7 +17,7 @@ namespace Lexicon_Slutuppgift_SmartBook
 
             do
             {
-                Console.Write($"{prompt}:");
+                Console.Write($"{prompt}: ");
                 answer = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(answer))

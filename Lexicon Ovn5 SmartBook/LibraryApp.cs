@@ -40,7 +40,7 @@ namespace Lexicon_Ovn5_SmartBook
 
         public static string ValidateIsbn(string prompt)
         {
-            //ska nog ändra så att jag kollar IsNullOrWhiteSpace i en egen funktion som jag anropar från
+            //ska nog i mån av tid ändra så att jag kollar IsNullOrWhiteSpace i en egen funktion som jag anropar från
             //denna för att uppnå bättre DRY
             bool success = false;
             string answer;
@@ -174,8 +174,9 @@ namespace Lexicon_Ovn5_SmartBook
                     {
                         //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
                         //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
-                        Console.WriteLine(b);
+                        Console.WriteLine($"{list.IndexOf(b)+1} {b}");                       
                     }
+                    BookListMenu(list);
                     //   MenuHelper.PressAnyKey();
                     break;
                 case "3":
@@ -190,5 +191,45 @@ namespace Lexicon_Ovn5_SmartBook
             }
             MenuHelper.PressAnyKey();
         }
+
+        private static void BookListMenu(List <Book> list)
+        {
+            Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
+            uint input = Validation.AskForUInt("Index");
+            int index = (int)(input - 1);
+           
+           
+            if (input > list.Count)
+                Console.WriteLine("Ogiltigt radnr");
+            else if (input <= list.Count && input != 0)
+            {
+                Book book = list[index];
+                BookMethods(book);
+            }
+            else MenuHelper.PressAnyKey();
+        }
+
+        private static void BookMethods(Book book)
+        {
+            Console.WriteLine("1. Markera bok som utlånad eller tillgänglig");
+            Console.WriteLine("2. Ta bort bok");
+            Console.WriteLine("0. Avbryt");
+            uint input = Validation.AskForUInt("Åtgärd");
+            switch (input)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 0:
+                    break;
+                default: Console.WriteLine("Ogiltigt val");
+                    break;
+            }
+
+
+        }
+           
+        
     }
 }
