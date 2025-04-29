@@ -10,7 +10,7 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine("SmartBook Bibliotekssystem");
             Console.WriteLine("==========================");
             Console.WriteLine("1. Lägg till en bok (titel, författare, ISBN, kategori)");
-            Console.WriteLine("2. Lägg till flera böcker, SeedData");
+            Console.WriteLine("2. Lägg till flera böcker (SeedData)");
             Console.WriteLine("3. Lista alla böcker");
             Console.WriteLine("4. Sök och hantera bok (via titel, författare eller ISBN)");
             Console.WriteLine("5. Spara och läsa in biblioteket från fil (JSON)");           

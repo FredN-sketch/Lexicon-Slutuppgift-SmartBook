@@ -172,27 +172,12 @@ namespace Lexicon_Ovn5_SmartBook
                 case "1":
                     string author = Validation.AskForString("Författare");
                     var list = library.QueryAuthor(author);
-                   
-                    if (list.Count == 0)
-                        Console.WriteLine("Sökningen gav inget resultat.");
-                    else if (list.Count == 1)
-                        BookMethods(list[0]);
-                    else
-                        BookListMenu(list);
+                    QueryResultList(list);
                     break;
                 case "2":
                     string title = Validation.AskForString("Titel");                 
-                    list = library.QueryTitle(title);
-                  
-                    if (list.Count == 0)
-                        Console.WriteLine("Sökningen gav inget resultat.");
-                    else if (list.Count == 1) 
-                    {
-                        Console.WriteLine(list[0]);
-                        BookMethods(list[0]);
-                    }                       
-                    else
-                        BookListMenu(list);                    
+                    list = library.QueryTitle(title);                  
+                    QueryResultList(list);                    
                     break;
                 case "3":
                     string isbn = Validation.AskForString("ISBN");
@@ -201,6 +186,7 @@ namespace Lexicon_Ovn5_SmartBook
                         Console.WriteLine("Sökningen gav inget resultat.");
                     else
                     {
+                        Console.WriteLine(Book.BookReportHeader);
                         Console.WriteLine(book);
                         BookMethods(book);
                     }                    
@@ -208,6 +194,20 @@ namespace Lexicon_Ovn5_SmartBook
                 default:                           
                     break;
             }       
+        }
+
+        private static void QueryResultList(List<Book> list)
+        {
+            if (list.Count == 0)
+                Console.WriteLine("Sökningen gav inget resultat.");
+            else if (list.Count == 1)
+            { 
+                Console.WriteLine(Book.BookReportHeader); 
+                Console.WriteLine(list[0]);
+                BookMethods(list[0]);
+            }
+            else
+                BookListMenu(list);
         }
 
         private static void BookListMenu(List <Book> list)
