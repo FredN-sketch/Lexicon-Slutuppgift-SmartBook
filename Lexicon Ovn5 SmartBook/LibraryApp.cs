@@ -11,10 +11,10 @@ namespace Lexicon_Ovn5_SmartBook
 {
     public static class LibraryApp
     {
-        private static Library library = new Library();
+        private static Library library = new Library();       
         public static void Start()
         {
-            //SeedData();
+            InitiateBookReportHeader();
             bool showMenu = true;
             while (showMenu)
             {
@@ -22,6 +22,19 @@ namespace Lexicon_Ovn5_SmartBook
                 showMenu = MenuHelper.MainMenu();
             }
         }
+
+        private static void InitiateBookReportHeader()
+        {
+            Book.BookReportHeader.Append("Författare".PadRight(20) + "\t");
+            Book.BookReportHeader.Append("Titel".PadRight(35) + "\t");
+            Book.BookReportHeader.Append("ISBN".PadRight(15) + "\t");
+            Book.BookReportHeader.Append("Kategori".PadRight(15) + "\t");
+            Book.BookReportHeader.Append("Status".PadRight(20) + "\t");
+            Book.BookReportHeader.Append(Environment.NewLine);
+            Book.BookReportHeader.Append("".PadRight(15 + 35 + 15 + 15 + 27, '='));
+         //   Book.BookReportHeader.Append(Environment.NewLine);
+        }
+
         public static void AddBookWithPrompt()
         {        
             Console.Write(Environment.NewLine);
@@ -80,7 +93,7 @@ namespace Lexicon_Ovn5_SmartBook
         {
             library.AddBook(new Book("Bilbo", "Tolkien JRR", "91 29 53633 2", "Fantasy"));
             library.AddBook(new Book("Varulvens år", "King Stephen", "91-32-31333-0", "Skräck"));
-            library.AddBook(new Book("Fågeln som vrider upp världen", "Murakami Haruki", "978-91-1-301940-6", "Roman"));
+            library.AddBook(new Book("Fågeln som vrider upp världen", "Murakami Haruki", "978-91-13019-6", "Roman"));
             library.AddBook(new Book("Staden som försvann", "King Stephen", "91-582-1002-4", "Skräck"));
             library.AddBook(new Book("Shogun", "Clavell James", "91-582-1002-5", "Roman"));
             library.AddBook(new Book("Moment 22", "Heller Joseph", "91-582-1002-6", "Roman"));
@@ -100,7 +113,18 @@ namespace Lexicon_Ovn5_SmartBook
           //  var booklist = books
                 .OrderBy(x => x.Author)
                 .ThenBy(x => x.Title);
-            Console.WriteLine($"Författare \tTitel \t\t\tISBN \tKategori \tStatus");
+        //    Console.WriteLine($"Författare \tTitel \t\t\tISBN \tKategori \tStatus");
+       //     return $"{Author.PadRight(10)}\t{Title.PadRight(25)} \t{Isbn.PadRight(15)} \t{Category.PadRight(15)} {Status.ToString().PadRight(15)}";
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append("Författare".PadRight(20)+"\t");
+            //sb.Append("Titel".PadRight(35) + "\t");
+            //sb.Append("ISBN".PadRight(15) + "\t");
+            //sb.Append("Kategori".PadRight(15) + "\t");
+            //sb.Append("Status".PadRight(20) + "\t");
+            //sb.Append(Environment.NewLine);
+            //sb.Append("".PadRight(15 + 35 + 15 + 15 + 27, '='));
+            //sb.Append(Environment.NewLine);
+            Console.WriteLine(Book.BookReportHeader.ToString());
             foreach (Book book in books)
             {
                 //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
@@ -175,12 +199,10 @@ namespace Lexicon_Ovn5_SmartBook
                 case "1":
                     string author = Validation.AskForString("Författare");
                     var list = library.QueryAuthor(author);
-                    foreach (Book b in list)
-                    {
-                        //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
-                        //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
-                        Console.WriteLine($"{list.IndexOf(b)+1} {b}");
-                    }
+                    //foreach (Book b in list)
+                    //{                        
+                    //    Console.WriteLine($"{list.IndexOf(b)+1} {b}");
+                    //}
                     if (list.Count == 0)
                         Console.WriteLine("Sökningen gav inget resultat.");
                     else if (list.Count == 1)
@@ -192,17 +214,18 @@ namespace Lexicon_Ovn5_SmartBook
                     string title = Validation.AskForString("Titel");
                   //  Book book = library.QueryTitle(title);
                     list = library.QueryTitle(title);
-                  //  Console.WriteLine(book);
-                    foreach (Book b in list)
+                  
+                    //foreach (Book b in list)
+                    //{                       
+                    //    Console.WriteLine($"{list.IndexOf(b)+1} {b}");                       
+                    //}
+                    if (list.Count == 0)
+                        Console.WriteLine("Sökningen gav inget resultat.");
+                    else if (list.Count == 1) 
                     {
-                        //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
-                        //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
-                        Console.WriteLine($"{list.IndexOf(b)+1} {b}");                       
-                    }
-                    if (list.Count == 0)                    
-                        Console.WriteLine("Sökningen gav inget resultat.");                    
-                    else if (list.Count == 1)
+                        Console.WriteLine(list[0]);
                         BookMethods(list[0]);
+                    }                       
                     else
                         BookListMenu(list);                    
                     break;
@@ -226,6 +249,13 @@ namespace Lexicon_Ovn5_SmartBook
 
         private static void BookListMenu(List <Book> list)
         {
+            Console.WriteLine(Book.BookReportHeader);
+            foreach (Book b in list)
+            {
+                //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
+                //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+                Console.WriteLine($"{list.IndexOf(b) + 1} {b}");
+            }
             Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
             uint input = Validation.AskForUInt("Index");
             int index = (int)(input - 1);

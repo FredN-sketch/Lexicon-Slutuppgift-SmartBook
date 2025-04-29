@@ -31,8 +31,9 @@ namespace Lexicon_Slutuppgift_SmartBook
         }
         public override string ToString()
         {
-            return $"{Author} \t{Title} \t{Isbn} \t{Category} {Status}";
+        //    return $"{Author} \t{Title} \t{Isbn} \t{Category} {Status}";
+            return $"{Author.PadRight(20)}\t{Title.PadRight(35)}\t{Isbn.PadRight(15)}\t{Category.PadRight(15)}\t{Status.ToString().PadRight(20)}";
         }
-        
+        public static StringBuilder BookReportHeader = new StringBuilder();         
     }
 }
