@@ -31,8 +31,7 @@ namespace Lexicon_Ovn5_SmartBook
             Book.BookReportHeader.Append("Kategori".PadRight(15) + "\t");
             Book.BookReportHeader.Append("Status".PadRight(20) + "\t");
             Book.BookReportHeader.Append(Environment.NewLine);
-            Book.BookReportHeader.Append("".PadRight(15 + 35 + 15 + 15 + 27, '='));
-         //   Book.BookReportHeader.Append(Environment.NewLine);
+            Book.BookReportHeader.Append("".PadRight(15 + 35 + 15 + 15 + 27, '='));         
         }
 
         public static void AddBookWithPrompt()
@@ -40,21 +39,12 @@ namespace Lexicon_Ovn5_SmartBook
             Console.Write(Environment.NewLine);
             Console.WriteLine("Lägg till en bok");
             Console.Write(Environment.NewLine);
-            string title = Validation.AskForString("Titel");
-            // Console.Write("Författare: ");
-            // string author = Console.ReadLine();
+            string title = Validation.AskForString("Titel");            
             string author = Validation.AskForString("Författare");
-
-
             string isbn = ValidateIsbn("ISBN");
-
-            //Console.Write("Kategori: ");
-            //string category = Console.ReadLine();
             string category = Validation.AskForString("Kategori");
-
             library.AddBook(new Book(title, author, isbn, category));
-            Console.WriteLine("Boken är tillagd");
-       //     MenuHelper.PressAnyKey();
+            Console.WriteLine("Boken är tillagd");      
         }
 
         public static string ValidateIsbn(string prompt)
@@ -109,26 +99,13 @@ namespace Lexicon_Ovn5_SmartBook
         }
         public static void ListAllBooks()
         {
-            var books = library.GetBooks()
-          //  var booklist = books
+            var books = library.GetBooks()          
                 .OrderBy(x => x.Author)
                 .ThenBy(x => x.Title);
-        //    Console.WriteLine($"Författare \tTitel \t\t\tISBN \tKategori \tStatus");
-       //     return $"{Author.PadRight(10)}\t{Title.PadRight(25)} \t{Isbn.PadRight(15)} \t{Category.PadRight(15)} {Status.ToString().PadRight(15)}";
-            //StringBuilder sb = new StringBuilder();
-            //sb.Append("Författare".PadRight(20)+"\t");
-            //sb.Append("Titel".PadRight(35) + "\t");
-            //sb.Append("ISBN".PadRight(15) + "\t");
-            //sb.Append("Kategori".PadRight(15) + "\t");
-            //sb.Append("Status".PadRight(20) + "\t");
-            //sb.Append(Environment.NewLine);
-            //sb.Append("".PadRight(15 + 35 + 15 + 15 + 27, '='));
-            //sb.Append(Environment.NewLine);
+        
             Console.WriteLine(Book.BookReportHeader.ToString());
             foreach (Book book in books)
-            {
-                //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
-                //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+            {                
                 Console.WriteLine(book);
             }
         }
@@ -160,9 +137,7 @@ namespace Lexicon_Ovn5_SmartBook
                 Console.WriteLine(ex.GetType().ToString());
                 
             }
-
-            MenuHelper.PressAnyKey();
-            
+            MenuHelper.PressAnyKey();            
         }
 
         internal static void JsonMenu()
@@ -180,9 +155,7 @@ namespace Lexicon_Ovn5_SmartBook
                 case "2":
                     ImportLibraryFromJson();
                     break;
-                default:
-                    //Console.WriteLine("Ogiltigt val");
-                    //Console.ReadLine();
+                default:                    
                     break;
             }                   
         }
@@ -199,10 +172,7 @@ namespace Lexicon_Ovn5_SmartBook
                 case "1":
                     string author = Validation.AskForString("Författare");
                     var list = library.QueryAuthor(author);
-                    //foreach (Book b in list)
-                    //{                        
-                    //    Console.WriteLine($"{list.IndexOf(b)+1} {b}");
-                    //}
+                   
                     if (list.Count == 0)
                         Console.WriteLine("Sökningen gav inget resultat.");
                     else if (list.Count == 1)
@@ -211,14 +181,9 @@ namespace Lexicon_Ovn5_SmartBook
                         BookListMenu(list);
                     break;
                 case "2":
-                    string title = Validation.AskForString("Titel");
-                  //  Book book = library.QueryTitle(title);
+                    string title = Validation.AskForString("Titel");                 
                     list = library.QueryTitle(title);
                   
-                    //foreach (Book b in list)
-                    //{                       
-                    //    Console.WriteLine($"{list.IndexOf(b)+1} {b}");                       
-                    //}
                     if (list.Count == 0)
                         Console.WriteLine("Sökningen gav inget resultat.");
                     else if (list.Count == 1) 
@@ -240,20 +205,16 @@ namespace Lexicon_Ovn5_SmartBook
                         BookMethods(book);
                     }                    
                     break;
-                default:
-                   // Console.WriteLine("Ogiltigt val");              
+                default:                           
                     break;
-            }
-        //    MenuHelper.PressAnyKey();
+            }       
         }
 
         private static void BookListMenu(List <Book> list)
         {
             Console.WriteLine(Book.BookReportHeader);
             foreach (Book b in list)
-            {
-                //Console.WriteLine($"Författare: {book.Author}\tTitel: {book.Title}\t\t{book.Isbn}\t{book.Category}");
-                //Console.WriteLine($"{book.Author} \t{book.Title} \t{book.Isbn} \t{book.Category} {book.Status}");
+            {               
                 Console.WriteLine($"{list.IndexOf(b) + 1} {b}");
             }
             Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
@@ -267,8 +228,7 @@ namespace Lexicon_Ovn5_SmartBook
             {
                 Book book = list[index];
                 BookMethods(book);
-            }
-           // else MenuHelper.PressAnyKey();
+            }          
         }
 
         private static void BookMethods(Book book)
@@ -287,11 +247,9 @@ namespace Lexicon_Ovn5_SmartBook
                     break;
                 case "0":
                     break;
-                default: //Console.WriteLine("Ogiltigt val");
+                default: 
                     break;
             }
-
-
         }
 
         private static void BookRemoveBook(Book book)
@@ -306,8 +264,7 @@ namespace Lexicon_Ovn5_SmartBook
                     break;
                 case "n":
                     break;
-                default:
-                //    Console.WriteLine("Ogiltigt val!");
+                default:                
                     break;
             }                     
         }
@@ -326,12 +283,10 @@ namespace Lexicon_Ovn5_SmartBook
                         break;
                 case "n":
                     break;
-                default: 
-                  //  Console.WriteLine("Ogiltigt val!");
+                default:                   
                     break;
             }
-            Console.WriteLine(book.Status);
-       //     MenuHelper.PressAnyKey();
+            Console.WriteLine(book.Status);      
         }
     }
 }
