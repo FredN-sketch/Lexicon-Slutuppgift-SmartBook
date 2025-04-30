@@ -26,12 +26,12 @@ namespace Lexicon_Ovn5_SmartBook
         private static void InitiateBookReportHeader()
         {
             Book.BookReportHeader.Append("Författare".PadRight(20) + "\t");
-            Book.BookReportHeader.Append("Titel".PadRight(35) + "\t");
+            Book.BookReportHeader.Append("Titel".PadRight(36) + "\t");
             Book.BookReportHeader.Append("ISBN".PadRight(15) + "\t");
             Book.BookReportHeader.Append("Kategori".PadRight(15) + "\t");
             Book.BookReportHeader.Append("Status".PadRight(20) + "\t");
             Book.BookReportHeader.Append(Environment.NewLine);
-            Book.BookReportHeader.Append("".PadRight(15 + 35 + 15 + 15 + 27, '='));         
+            Book.BookReportHeader.Append("".PadRight(20 + 36 + 15 + 15 + 21, '='));         
         }
 
         public static void AddBookWithPrompt()
@@ -41,27 +41,26 @@ namespace Lexicon_Ovn5_SmartBook
             Console.Write(Environment.NewLine);
             string title = Validation.AskForString("Titel");            
             string author = Validation.AskForString("Författare");
-            string isbn = ValidateIsbn("ISBN");
+            string isbn = ValidateIsbn();
             string category = Validation.AskForString("Kategori");
             library.AddBook(new Book(title, author, isbn, category));
+            Console.WriteLine();
             Console.WriteLine("Boken är tillagd");      
         }
 
-        public static string ValidateIsbn(string prompt)
+        public static string ValidateIsbn()
         {
-            //ska nog i mån av tid ändra så att jag kollar IsNullOrWhiteSpace i en egen funktion som jag anropar från
-            //denna för att uppnå bättre DRY
             bool success = false;
             string answer;
 
             do
             {
-                Console.Write($"{prompt}: "); 
+                Console.Write($"ISBN: "); 
                 answer = Console.ReadLine();
 
                 if (string.IsNullOrWhiteSpace(answer))
                 {
-                    Console.WriteLine($"Ange ett giltigt {prompt}");
+                    Console.WriteLine($"Ange ett giltigt ISBN");
                 }
                
                 else if (library.GetBooks().Any(b => b.Isbn == answer))
@@ -102,7 +101,7 @@ namespace Lexicon_Ovn5_SmartBook
             var books = library.GetBooks()          
                 .OrderBy(x => x.Author)
                 .ThenBy(x => x.Title);
-        
+            Console.WriteLine();
             Console.WriteLine(Book.BookReportHeader.ToString());
             foreach (Book book in books)
             {                

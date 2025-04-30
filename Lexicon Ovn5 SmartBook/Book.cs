@@ -31,9 +31,14 @@ namespace Lexicon_Slutuppgift_SmartBook
             Status = status;
         }
         public override string ToString()
-        {        
-            return $"{Author.PadRight(20)}\t{Title.PadRight(35)}\t{Isbn.PadRight(15)}\t{Category.PadRight(15)}\t{Status.ToString().PadRight(20)}";
+        {
+            string author = Author.Length <= 20 ? Author : Author.Substring(0, 20);
+            string title = Title.Length <= 36 ? Title : Title.Substring(0, 36);
+            string isbn = Isbn.Length <= 15 ? Isbn : Isbn.Substring(0, 15);
+            string category = Category.Length <= 15 ? Category : Category.Substring(0, 15);
+            return $"{author.PadRight(20)}\t{title.PadRight(36)}\t{isbn.PadRight(15)}\t{category.PadRight(15)}\t{Status.ToString()}";
         }
+        //används vid utskrift av bok/boklista. Initieras i LibraryApp.InitiateBookReportHeader()
         public static StringBuilder BookReportHeader = new StringBuilder();         
     }
 }
