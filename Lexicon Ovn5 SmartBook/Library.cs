@@ -28,17 +28,17 @@ namespace Lexicon_Slutuppgift_SmartBook
         {
             return books.ToArray();
         }
-        internal Book QueryIsbn(string isbn)
+        public Book QueryIsbn(string isbn)
         {
             Book book = books.FirstOrDefault(b => b.Isbn == isbn);
             return book;
         }
-        internal List<Book> QueryTitle(string title)
+        public List<Book> QueryTitle(string title)
         {          
             List<Book> list = books.Where(b => b.Title.ToString().ToLower().Contains(title.ToLower())).ToList();
             return list;
         }
-        internal List<Book> QueryAuthor(string author)
+        public List<Book> QueryAuthor(string author)
         {            
             List<Book> list = books.Where(b => b.Author.ToString().ToLower().Contains(author.ToLower())).ToList();
             return list;

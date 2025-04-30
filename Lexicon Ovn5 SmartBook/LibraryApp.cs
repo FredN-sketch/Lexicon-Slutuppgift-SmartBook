@@ -220,7 +220,7 @@ namespace Lexicon_Ovn5_SmartBook
             }
             Console.Write(Environment.NewLine);
             Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
-            uint input = Validation.AskForUInt("Index");
+            uint input = Validation.AskForUInt("Radnr");
             int index = (int)(input - 1);
            
            
