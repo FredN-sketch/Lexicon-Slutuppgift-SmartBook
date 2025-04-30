@@ -15,17 +15,16 @@ namespace Lexicon_Slutuppgift_SmartBook
             books = new List<Book>();
         }
        
-        internal void AddBook(Book book)
+        public void AddBook(Book book) //ändrar från internal->public för Test
         {
-            books.Add(book);
-           
+            books.Add(book);           
         }
-        internal void RemoveBook(Book book) 
+        public void RemoveBook(Book book) 
         {
             if (books.Remove(book))            
                 book = null;        
         }
-        internal IEnumerable<Book> GetBooks()
+        public IEnumerable<Book> GetBooks()
         {
             return books.ToArray();
         }

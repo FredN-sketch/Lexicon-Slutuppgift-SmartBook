@@ -112,8 +112,7 @@ namespace Lexicon_Ovn5_SmartBook
         internal static void ExportLibraryToJson()
         {
             File.WriteAllText(@"C:\Tmp\library.json", JsonSerializer.Serialize(library.GetBooks()));
-            Console.WriteLine("Exporten är klar");
-            MenuHelper.PressAnyKey();
+            Console.WriteLine("Exporten är klar");            
         }
         internal static void ImportLibraryFromJson()
         {
@@ -134,10 +133,9 @@ namespace Lexicon_Ovn5_SmartBook
                 Console.WriteLine("Det finns ingen JSON-fil att läsa in biblioteket från.");
                 Console.WriteLine("Lägg in böcker manuellt eller använd SeedData, och exportera till JSON först.");
                 Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.GetType().ToString());
-                
+                Console.WriteLine(ex.GetType().ToString());                
             }
-            MenuHelper.PressAnyKey();            
+                       
         }
 
         internal static void JsonMenu()
@@ -201,9 +199,11 @@ namespace Lexicon_Ovn5_SmartBook
             if (list.Count == 0)
                 Console.WriteLine("Sökningen gav inget resultat.");
             else if (list.Count == 1)
-            { 
+            {
+                Console.Write(Environment.NewLine);
                 Console.WriteLine(Book.BookReportHeader); 
                 Console.WriteLine(list[0]);
+                Console.Write(Environment.NewLine);
                 BookMethods(list[0]);
             }
             else
@@ -212,11 +212,13 @@ namespace Lexicon_Ovn5_SmartBook
 
         private static void BookListMenu(List <Book> list)
         {
+            Console.Write(Environment.NewLine);
             Console.WriteLine(Book.BookReportHeader);
             foreach (Book b in list)
             {               
                 Console.WriteLine($"{list.IndexOf(b) + 1} {b}");
             }
+            Console.Write(Environment.NewLine);
             Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
             uint input = Validation.AskForUInt("Index");
             int index = (int)(input - 1);
@@ -286,7 +288,7 @@ namespace Lexicon_Ovn5_SmartBook
                 default:                   
                     break;
             }
-            Console.WriteLine(book.Status);      
+            Console.WriteLine($"\"{book.Title}\" av {book.Author} är {book.Status}");      
         }
     }
 }

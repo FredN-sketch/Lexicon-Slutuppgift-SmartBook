@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lexicon Slutuppgift SmartBook", "Lexicon Ovn5 SmartBook\Lexicon Slutuppgift SmartBook.csproj", "{00A089AA-2C1A-453E-A7B4-0435E7AEC214}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBook Test Project", "SmartBook Test Project\SmartBook Test Project.csproj", "{5AA697F4-DA83-448F-96CD-254F942D0BD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{00A089AA-2C1A-453E-A7B4-0435E7AEC214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00A089AA-2C1A-453E-A7B4-0435E7AEC214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00A089AA-2C1A-453E-A7B4-0435E7AEC214}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AA697F4-DA83-448F-96CD-254F942D0BD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AA697F4-DA83-448F-96CD-254F942D0BD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AA697F4-DA83-448F-96CD-254F942D0BD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AA697F4-DA83-448F-96CD-254F942D0BD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

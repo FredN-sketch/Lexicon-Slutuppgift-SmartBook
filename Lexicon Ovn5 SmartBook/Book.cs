@@ -8,13 +8,14 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Lexicon_Slutuppgift_SmartBook
 {
-    internal class Book
+    public class Book
     {
-        private string title;
-        private string author;
-        private string isbn;
-        private string category;
-        private BookStatus status;
+        //private string title;
+        //private string author;
+        //private string isbn;
+        //private string category;
+        //private BookStatus status;
+
         public string Title { get; set; }
         public string Author { get; set; }
         public string Isbn { get; set; }
