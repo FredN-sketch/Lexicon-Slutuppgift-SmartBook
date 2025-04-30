@@ -78,28 +78,19 @@ namespace Lexicon_Slutuppgift_SmartBook
                 }
                 else
                 {
-                    Console.WriteLine($"Ange en giltig {prompt}");
+                    Console.Write($"Ogiltigt val. Ange ");
+                    for (int i = 0; i < uints.Length; i++)
+                    {
+                        Console.Write($"{uints[i]}");
+                        if (i < uints.Length - 2)
+                            Console.Write(", ");
+                        else if (i == uints.Length - 2)
+                            Console.Write(" eller ");
+                    }
+                    Console.Write(": ");                   
                 }
 
             } while (true);
-        }
-        public static uint AskForUInt(string prompt)
-        {
-
-            do
-            {
-                string input = AskForString(prompt);
-
-                if (uint.TryParse(input, out uint result))
-                {
-                    return result;
-                }
-                else
-                {
-                    Console.WriteLine($"Ange en giltig {prompt}");
-                }
-
-            } while (true);
-        }
+        }        
     }
 }

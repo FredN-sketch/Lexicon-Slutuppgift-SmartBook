@@ -219,18 +219,28 @@ namespace Lexicon_Ovn5_SmartBook
                 Console.WriteLine($"{list.IndexOf(b) + 1} {b}");
             }
             Console.Write(Environment.NewLine);
-            Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
-            uint input = Validation.AskForUInt("Radnr");
-            int index = (int)(input - 1);
            
-           
-            if (input > list.Count)
-                Console.WriteLine("Ogiltigt radnr");
-            else if (input <= list.Count && input != 0)
+            int listCount = list.Count+1; 
+            uint[] uints = new uint[listCount];
+            for (int i = 0; i < listCount; i++)
             {
-                Book book = list[index];
-                BookMethods(book);
-            }          
+                uints[i] = (uint)i;  
+            //    Console.WriteLine($"uints[{i}]: {uints[i]}");
+            }
+            
+            Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
+            uint input = Validation.AskForUInt("Radnr", uints);
+            int index = (int)(input - 1);
+            Book book = list[index];
+            BookMethods(book);
+
+            //if (input > list.Count)
+            //    Console.WriteLine("Ogiltigt radnr");
+            //else if (input <= list.Count && input != 0)
+            //{
+            //    Book book = list[index];
+            //    BookMethods(book);
+            //}          
         }
 
         private static void BookMethods(Book book)
@@ -256,7 +266,7 @@ namespace Lexicon_Ovn5_SmartBook
 
         private static void BookRemoveBook(Book book)
         {
-            Console.WriteLine($"Du har angett att du vill ta bort boken \"{book.Title}\" av {book.Author}");
+            Console.WriteLine($"Du har angett att du vill ta bort \"{book.Title}\" av {book.Author}");
             string input = Validation.AskForString("Är du säker? j/n", ["j", "n"]);
             switch (input)
             {
