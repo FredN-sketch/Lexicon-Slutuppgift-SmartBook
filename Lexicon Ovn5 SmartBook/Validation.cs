@@ -90,21 +90,6 @@
                 }
 
             } while (true);
-        }  
-        //private static void ListValidOptions(object[] options)
-        //{
-        //    {  //skriver ut giltiga uints, exv "Ogiltigt val. Ange 0, 1 eller 2:"
-        //        Console.Write($"Ogiltigt val. Ange ");
-        //        for (int i = 0; i < options.Length; i++)
-        //        {
-        //            Console.Write($"{options[i]}");
-        //            if (i < options.Length - 2)
-        //                Console.Write(", ");
-        //            else if (i == options.Length - 2)
-        //                Console.Write(" eller ");
-        //        }
-        //        Console.Write(": ");
-        //    }
-        //}
+        }         
     }
 }

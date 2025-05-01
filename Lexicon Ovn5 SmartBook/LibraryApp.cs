@@ -217,23 +217,18 @@ namespace Lexicon_Ovn5_SmartBook
             uint[] uints = new uint[listCount];
             for (int i = 0; i < listCount; i++)
             {
-                uints[i] = (uint)i;  
-            //    Console.WriteLine($"uints[{i}]: {uints[i]}");
+                uints[i] = (uint)i;              
             }
             
             Console.WriteLine("Ange radnr för den bok du vill välja eller 0 för att avbryta");
             uint input = Validation.AskForUInt("Radnr", uints);
             int index = (int)(input - 1);
-            Book book = list[index];
-            BookMethods(book);
-
-            //if (input > list.Count)
-            //    Console.WriteLine("Ogiltigt radnr");
-            //else if (input <= list.Count && input != 0)
-            //{
-            //    Book book = list[index];
-            //    BookMethods(book);
-            //}          
+            
+            if (input <= list.Count && input != 0)
+            {
+                Book book = list[index];
+                BookMethods(book);
+            }
         }
 
         private static void BookMethods(Book book)

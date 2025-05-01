@@ -3,13 +3,7 @@
 namespace Lexicon_Slutuppgift_SmartBook
 {
     public class Book
-    {
-        //private string title;
-        //private string author;
-        //private string isbn;
-        //private string category;
-        //private BookStatus status;
-
+    {        
         public string Title { get; set; }
         public string Author { get; set; }
         public string Isbn { get; set; }
@@ -32,6 +26,8 @@ namespace Lexicon_Slutuppgift_SmartBook
             string category = Category.Length <= 15 ? Category : Category.Substring(0, 15);
             return $"{author.PadRight(20)}\t{title.PadRight(36)}\t{isbn.PadRight(15)}\t{category.PadRight(15)}\t{Status.ToString()}";
         }
+        //Substring och Padright för att kolumnlängd vid utskrift ska vara densamma oavsett längd på strängarna
+
         //används vid utskrift av bok/boklista. Initieras i LibraryApp.InitiateBookReportHeader()
         public static StringBuilder BookReportHeader = new StringBuilder();         
     }

@@ -46,9 +46,7 @@ namespace Lexicon_Ovn5_SmartBook
                     return true;               
                 case "0":
                     return false;
-                default:
-                    //Console.WriteLine("Ogiltigt val.");
-                    //PressAnyKey();
+                default:                    
                     return true;
             }
             
