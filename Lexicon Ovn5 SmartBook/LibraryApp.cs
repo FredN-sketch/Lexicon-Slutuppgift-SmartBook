@@ -175,11 +175,12 @@ namespace Lexicon_Ovn5_SmartBook
                     break;
                 case "3":
                     string isbn = Validation.AskForString("ISBN");
+                    Console.WriteLine();
                     Book book = library.QueryIsbn(isbn);
                     if (book == null)
                         Console.WriteLine("Sökningen gav inget resultat.");
                     else
-                    {
+                    {                        
                         Console.WriteLine(Book.BookReportHeader);
                         Console.WriteLine(book);
                         BookMethods(book);
@@ -236,6 +237,7 @@ namespace Lexicon_Ovn5_SmartBook
 
         private static void BookMethods(Book book)
         {
+            Console.WriteLine();
             Console.WriteLine("1. Markera bok som utlånad eller tillgänglig");
             Console.WriteLine("2. Ta bort bok");
             Console.WriteLine("0. Avbryt");
@@ -243,10 +245,10 @@ namespace Lexicon_Ovn5_SmartBook
             switch (input)
             {
                 case "1":
-                    BookChangeBookStatus(book);                                   
+                    ChangeBookStatus(book);                                   
                    break;
                 case "2":
-                    BookRemoveBook(book);                                       
+                    RemoveBook(book);                                       
                     break;
                 case "0":
                     break;
@@ -255,7 +257,7 @@ namespace Lexicon_Ovn5_SmartBook
             }
         }
 
-        private static void BookRemoveBook(Book book)
+        private static void RemoveBook(Book book)
         {
             Console.WriteLine($"Du har angett att du vill ta bort \"{book.Title}\" av {book.Author}");
             string input = Validation.AskForString("Är du säker? j/n", ["j", "n"]);
@@ -272,7 +274,7 @@ namespace Lexicon_Ovn5_SmartBook
             }                     
         }
 
-        private static void BookChangeBookStatus(Book book)
+        private static void ChangeBookStatus(Book book)
         {
             Console.WriteLine($"Boken är markerad som {book.Status}");
             string input = Validation.AskForString("Vill du ändra? j/n", ["j", "n"]);
