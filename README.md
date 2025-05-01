@@ -15,9 +15,9 @@ När det gäller felhantering/validering använder jag bara try/catch vid läsni
 Sökning på titel och författare är inte case sensitive och behöver inte vara exakt, dvs det går bra att söka på en del av titeln eller författarens namn. Sökning på ISBN måste dock vara exakt.
 
 I testprojektet finns tre tester.
-AddBook_ShouldAddBookToList
-AddAndRemoveBook_ShouldAddAndRemoveBookToList
-AddBookAndTestQueries
+1. AddBook_ShouldAddBookToList
+2. AddAndRemoveBook_ShouldAddAndRemoveBookToList
+3. AddBookAndTestQueries
 Det första testet lägger till en bok och verifierar att boken finns i biblioteket.
 Det andra testet gör samma som det första, men tar sedan bort boken och verifierar att boken inte finns kvar i biblioteket.
 Det tredje testet lägger till samma bok igen, och testar sedan metoderna för att söka boken via författare, titel och ISBN.
