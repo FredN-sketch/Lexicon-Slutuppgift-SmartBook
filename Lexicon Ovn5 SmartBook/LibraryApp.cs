@@ -176,7 +176,7 @@ namespace Lexicon_Ovn5_SmartBook
                 case "3":
                     string isbn = Validation.AskForString("ISBN");
                     Console.WriteLine();
-                    Book book = library.QueryIsbn(isbn);
+                    Book book = library.QueryIsbn(isbn); //ISBN ska vara unikt, högst en sökträff
                     if (book == null)
                         Console.WriteLine("Sökningen gav inget resultat.");
                     else
@@ -213,12 +213,12 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine(Book.BookReportHeader);
             foreach (Book b in list)
             {               
-                Console.WriteLine($"{list.IndexOf(b) + 1} {b}");
+                Console.WriteLine($"{list.IndexOf(b) + 1} {b}"); //+1 då jag inte vill börja med radnr 0 i listan
             }
             Console.Write(Environment.NewLine);
            
             int listCount = list.Count+1; 
-            uint[] uints = new uint[listCount];
+            uint[] uints = new uint[listCount]; //array av giltiga val som parameter till AskForUint
             for (int i = 0; i < listCount; i++)
             {
                 uints[i] = (uint)i;              
