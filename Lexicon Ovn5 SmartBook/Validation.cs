@@ -69,7 +69,7 @@
         {
             do
             {
-                string input = AskForString(prompt);
+                string input = Console.ReadLine(); 
 
                 if (uint.TryParse(input, out uint result) && uints.Contains(result))
                 {
