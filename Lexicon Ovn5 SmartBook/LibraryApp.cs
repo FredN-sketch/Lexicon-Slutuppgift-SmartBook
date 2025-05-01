@@ -152,12 +152,15 @@ namespace Lexicon_Ovn5_SmartBook
         }
         internal static void SearchMenu()
         {
+            Console.WriteLine();
             Console.WriteLine("Sök bok");
             Console.WriteLine("===============");
             Console.WriteLine("1. Författare");
             Console.WriteLine("2. Titel");
             Console.WriteLine("3. ISBN");
+            Console.WriteLine();
             string userInput = Validation.AskForString("", ["1", "2", "3"]);
+            Console.WriteLine();
             switch (userInput)
             {
                 case "1":

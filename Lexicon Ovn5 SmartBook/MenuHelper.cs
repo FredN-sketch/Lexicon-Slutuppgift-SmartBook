@@ -48,8 +48,7 @@ namespace Lexicon_Ovn5_SmartBook
                     return false;
                 default:                    
                     return true;
-            }
-            
+            }            
         }
 
         public static void PressAnyKey()
@@ -58,6 +57,5 @@ namespace Lexicon_Ovn5_SmartBook
             Console.WriteLine("Tryck på valfri tangent för att återgå till huvudmenyn.");
             Console.ReadKey();
         }
-
     }
 }
