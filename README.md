@@ -7,7 +7,7 @@ SmartBook Bibliotekssystem
 3. Lista alla böcker 
 4. Sök och hantera bok (via titel, författare eller ISBN)
 5. Spara och läsa in biblioteket från fil (JSON)
-0. Avsluta
+ 0. Avsluta
 
 Använd funktion 2 i huvudmenyn om du inte vill knappa in böcker manuellt.
 Jag har lagt in författarnas namn som “Efternamn Förnamn” för att underlätta sortering vid utskrift.
