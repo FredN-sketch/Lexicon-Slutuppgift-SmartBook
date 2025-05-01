@@ -86,7 +86,7 @@ namespace Lexicon_Ovn5_SmartBook
             library.AddBook(new Book("Stora skräckboken", "King William", "12312134", "Skräck"));
             library.AddBook(new Book("The Fundamentals of Kyokushin Karate","Fitkin Brian","12346","Fack"));
             library.AddBook(new Book("Momo", "Ende Michael", "12345", "Fantasy"));
-            library.AddBook(new Book("Den oändliga historien", "Ende Michael", "12346", "Fantasy"));
+            library.AddBook(new Book("Den oändliga historien", "Ende Michael", "12348", "Fantasy"));
             library.AddBook(new Book("Den oländiga historien", "Kvist Kalle", "12347", "Roman"));
             Console.WriteLine("Data inläst.");            
         }
