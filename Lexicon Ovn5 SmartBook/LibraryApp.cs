@@ -165,12 +165,16 @@ namespace Lexicon_Ovn5_SmartBook
             {
                 case "1":
                     string author = Validation.AskForString("Författare");
-                    var list = library.QueryAuthor(author);
+                    var list = library.QueryAuthor(author)
+                        .OrderBy(x => x.Author)
+                        .ThenBy(x => x.Title).ToList(); 
                     QueryResultList(list);
                     break;
                 case "2":
                     string title = Validation.AskForString("Titel");                 
-                    list = library.QueryTitle(title);                  
+                    list = library.QueryTitle(title)
+                         .OrderBy(x => x.Author)
+                         .ThenBy(x => x.Title).ToList(); 
                     QueryResultList(list);                    
                     break;
                 case "3":
