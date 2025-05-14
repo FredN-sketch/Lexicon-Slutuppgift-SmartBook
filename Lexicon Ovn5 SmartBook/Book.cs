@@ -24,7 +24,7 @@ namespace Lexicon_Slutuppgift_SmartBook
             string title = Title.Length <= 36 ? Title : Title.Substring(0, 36);
             string isbn = Isbn.Length <= 15 ? Isbn : Isbn.Substring(0, 15);
             string category = Category.Length <= 15 ? Category : Category.Substring(0, 15);
-            return $"{author.PadRight(20)}\t{title.PadRight(36)}\t{isbn.PadRight(15)}\t{category.PadRight(15)}\t{Status.ToString()}";
+            return $"{author,-20}\t{title.PadRight(36)}\t{isbn.PadRight(15)}\t{category.PadRight(15)}\t{Status.ToString()}";
         }
         //Substring och Padright för att kolumnlängd vid utskrift ska vara densamma oavsett längd på strängarna
 

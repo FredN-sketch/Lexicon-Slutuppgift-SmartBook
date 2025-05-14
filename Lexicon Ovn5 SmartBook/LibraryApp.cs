@@ -250,7 +250,7 @@ namespace Lexicon_Ovn5_SmartBook
             {
                 case "1":
                     ChangeBookStatus(book);                                   
-                   break;
+                    break;
                 case "2":
                     RemoveBook(book);                                       
                     break;
@@ -289,7 +289,7 @@ namespace Lexicon_Ovn5_SmartBook
                         book.Status = BookStatus.Tillgänglig;
                     else
                         book.Status = BookStatus.Utlånad;
-                        break;
+                    break;
                 case "n":
                     break;
                 default:                   
